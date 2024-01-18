@@ -1,0 +1,4 @@
+<div>
+    <img src="${pdict.imgUrl}" alt="${pdict.imgAlt}">
+    <a href="${pdict.productUrl}">${pdict.productName}</a>
+</div>
