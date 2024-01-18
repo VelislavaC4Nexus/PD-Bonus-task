@@ -4,13 +4,13 @@ var { elementGenerator } = require('../../../../helpers/helperDOM');
 
     let currentValue = {};
     
-    subscribe('sfcc:ready', async ({ value, config, isDisabled, isRequired, dataLocale, displayLocale }) => {
+    subscribe('sfcc:ready', async ({ value, ...rest }) => {
         console.log('triger', 'subscribe', value);
         
         // let imageDiv = document.createElement('div');
-        const imageDiv = elementGenerator('div','',document.body)
+        const imageDiv = elementGenerator('div','',document.body);
         // let openButton = document.createElement('button');
-        const openButton = elementGenerator('button','Add / Remove Pins',document.body)
+        const openButton = elementGenerator('button','Add / Remove Pins',document.body);
         // document.body.appendChild(openButton);
         // openButton.innerHTML = 'Add / Remove Pins';
         console.log('openButton', openButton);
@@ -18,6 +18,12 @@ var { elementGenerator } = require('../../../../helpers/helperDOM');
 
         imageDiv.className = 'image-add-pins';
 
+        const warningDiv = elementGenerator('div','Please save the changes before and after adding pins!',document.body);
+        warningDiv.style.backgroundColor = '#FFCCCC';
+        warningDiv.style.border = '1px solid gray';
+        warningDiv.style.borderRadius = '0.5rem';
+        warningDiv.style.padding = '0.2rem 0.4rem';
+        warningDiv.style.marginTop='1rem';
         // document.body.appendChild(imageDiv);
         currentValue = value ? value : {};
         showCreatedPins(currentValue)
@@ -104,18 +110,18 @@ var { elementGenerator } = require('../../../../helpers/helperDOM');
         console.log('imageHotspotEditorTriggerScript', 'showCreatedHotspots', currentValue);
         // if (currentValue.pins) {
             console.log('has pins');
-            let hotspotsContainer = document.querySelector('.hotspots-container');
-            if (hotspotsContainer) {
-                hotspotsContainer.parentNode.removeChild(hotspotsContainer);
+            let pinsContainer = document.querySelector('.pins-container');
+            if (pinsContainer) {
+                pinsContainer.parentNode.removeChild(pinsContainer);
             }
             // hotspotsContainer = document.createElement('div');
-            hotspotsContainer = elementGenerator('div','',document.body);
-            hotspotsContainer.className = 'hotspots-container';
+            pinsContainer = elementGenerator('div','',document.body);
+            pinsContainer.className = 'pins-container';
             // document.body.appendChild(hotspotsContainer);
         
 
             // const hotspotInfo = document.createElement('span');
-            const hotspotInfo = elementGenerator('div','',hotspotsContainer);
+            const hotspotInfo = elementGenerator('div','',pinsContainer);
             hotspotInfo.style.marginTop = '1rem';
             if(currentValue.pins && currentValue.pins.length){
                 hotspotInfo.innerHTML =`<span>${currentValue.pins.length} pins added</span>`
