@@ -4,11 +4,12 @@
 </isscript>
 
 <div>
-    <img class="img-pins" src="${pdict.imgUrl}" alt="${pdict.imageAlt}">
+    <img class="img-pins" <isif condition="${pdict.lazyLoadImage}">loading="lazy"</isif> src="${pdict.imgUrl}"
+    alt="${pdict.imageAlt}">
     <isloop items="${pdict.pins}" var="pin" status="loopstatus">
-        <div class="pin position-absolute translate-middle pin-${pin.pinClass}" style="left: ${pin.posX + 'px'}; top: ${pin.posY + 'px'}; cursor: pointer;">
-        <isprint value="${pdict.pinStyle}" encoding="off" />
+        <div class="pin position-absolute translate-middle pin-${pin.pinClass}"
+            style="left: ${pin.posX + 'px'}; top: ${pin.posY + 'px'}; cursor: pointer;">
+            <isprint value="${pdict.pinStyle}" encoding="off" />
         </div>
     </isloop>
 </div>
-

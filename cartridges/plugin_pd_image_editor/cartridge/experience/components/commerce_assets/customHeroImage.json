@@ -16,6 +16,12 @@
                     "required": true
                 },
                 {
+                    "id": "lazyLoadImage",
+                    "name": "Lazy Loading Image",
+                    "type": "boolean",
+                    "required": false
+                },
+                {
                     "id": "imageAlt",
                     "name": "Image Alt",
                     "description": "Image Alt.",

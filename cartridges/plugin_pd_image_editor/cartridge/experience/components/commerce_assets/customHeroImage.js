@@ -16,6 +16,7 @@ module.exports.render = function (context) {
     model.imgUrl = content.image ? content.image.file.absURL : null;
     model.pins = content.imageEditor ? content.imageEditor.pins : [];
     model.pinStyle = content.pinStyle ? content.pinStyle : null;
+    model.lazyLoadImage = content.lazyLoadImage;
     model.imageAlt = content.imageAlt;
 
     return new Template('experience/components/commerce_assets/customHeroImage').render(model).text;
