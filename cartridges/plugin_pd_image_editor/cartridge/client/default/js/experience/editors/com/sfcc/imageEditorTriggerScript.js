@@ -3,30 +3,23 @@ var { elementGenerator } = require('../../../../helpers/helperDOM');
 (() => {
 
     let currentValue = {};
-    
-    subscribe('sfcc:ready', async ({ value, ...rest }) => {
-        console.log('triger', 'subscribe', value);
-        
-        // let imageDiv = document.createElement('div');
-        const imageDiv = elementGenerator('div','',document.body);
-        // let openButton = document.createElement('button');
-        const openButton = elementGenerator('button','Add / Remove Pins',document.body);
-        // document.body.appendChild(openButton);
-        // openButton.innerHTML = 'Add / Remove Pins';
-        console.log('openButton', openButton);
-        openButton.addEventListener('click', handleBreakoutOpen);
 
+    subscribe('sfcc:ready', async ({ value, ...rest }) => {
+        const imageDiv = elementGenerator('div', '', document.body);
         imageDiv.className = 'image-add-pins';
 
-        const warningDiv = elementGenerator('div','Please save the changes before and after adding pins!',document.body);
+        const openButton = elementGenerator('button', 'Add / Remove Pins', document.body);
+        openButton.addEventListener('click', handleBreakoutOpen);
+
+        const warningDiv = elementGenerator('div', 'Please save the changes before and after adding pins!', document.body);
         warningDiv.style.backgroundColor = '#FFCCCC';
         warningDiv.style.border = '1px solid gray';
         warningDiv.style.borderRadius = '0.5rem';
         warningDiv.style.padding = '0.2rem 0.4rem';
-        warningDiv.style.marginTop='1rem';
-        // document.body.appendChild(imageDiv);
+        warningDiv.style.marginTop = '1rem';
+
         currentValue = value ? value : {};
-        showCreatedPins(currentValue)
+        showCreatedPins(currentValue);
 
     });
 
@@ -43,30 +36,14 @@ var { elementGenerator } = require('../../../../helpers/helperDOM');
         });
     }
 
-    function handleBreakoutOpen(value) {
-        console.log('handleBreakoutOpen', currentValue);
-        // var componentSettings = document.querySelector('.component-settings');
+    function handleBreakoutOpen(e) {
 
-        // var image = componentSettings.querySelector('img');
-        // var image = document.querySelector('.img-pins');
-        // console.log("image",image);
         var iframeImageDiv = document.querySelector('.image-add-pins span');
-        console.log('handleBreakoutOpen', iframeImageDiv);
-        var src = iframeImageDiv.getAttribute('src')
-        console.log('handleBreakoutOpen', src);
-        // var currentImage = imgWrapper.children[0];
-        // console.log('currentImage', currentImage);
-        // console.log('imageType', imageType);
-        // console.log('imageSrc', imageSrc);
-        // var imageType = currentImage.getAttribute('type');
-        // var imageSrc = currentImage.getAttribute('src');
-        if(!currentValue.src){
+
+        if (!currentValue.src) {
 
             currentValue = {
                 src: iframeImageDiv.getAttribute('src'),
-                // type: currentImage.getAttribute('type'),
-                // displayText: currentImage.getAttribute('name'),
-    
             }
         }
 
@@ -99,34 +76,24 @@ var { elementGenerator } = require('../../../../helpers/helperDOM');
         currentValue = Object.assign({}, value);
         updatePageDesignerValue(currentValue);
         showCreatedPins(currentValue);
-        // // Emit value update to Page Designer host application
-        // emit({
-        //     type: 'sfcc:value',
-        //     payload: value
-        // });
     }
 
     function showCreatedPins(currentValue) {
-        console.log('imageHotspotEditorTriggerScript', 'showCreatedHotspots', currentValue);
-        // if (currentValue.pins) {
-            console.log('has pins');
-            let pinsContainer = document.querySelector('.pins-container');
-            if (pinsContainer) {
-                pinsContainer.parentNode.removeChild(pinsContainer);
-            }
-            // hotspotsContainer = document.createElement('div');
-            pinsContainer = elementGenerator('div','',document.body);
-            pinsContainer.className = 'pins-container';
-            // document.body.appendChild(hotspotsContainer);
-        
+        let pinsContainer = document.querySelector('.pins-container');
+        if (pinsContainer) {
+            pinsContainer.parentNode.removeChild(pinsContainer);
+        }
+        pinsContainer = elementGenerator('div', '', document.body);
+        pinsContainer.className = 'pins-container';
 
-            // const hotspotInfo = document.createElement('span');
-            const hotspotInfo = elementGenerator('div','',pinsContainer);
-            hotspotInfo.style.marginTop = '1rem';
-            if(currentValue.pins && currentValue.pins.length){
-                hotspotInfo.innerHTML =`<span>${currentValue.pins.length} pins added</span>`
-            }else{
-                hotspotInfo.innerHTML ='<span style="color: red;">No pins added yet!</span>'
-            }
+        const pinsInfo = elementGenerator('div', '', pinsContainer);
+        pinsInfo.style.marginTop = '1rem';
+
+        if (currentValue.pins && currentValue.pins.length) {
+            pinsInfo.innerHTML = `<span>${currentValue.pins.length} pins added</span>`;
+        } else {
+            pinsInfo.innerHTML = '<span style="color: red;">No pins added yet!</span>';
+        }
     }
+
 })();

@@ -8,7 +8,6 @@
             "name": "Image Specification",
             "description": "Specification of the image to be displayed in editor.",
             "attribute_definitions": [
-           
                 {
                     "id": "image",
                     "name": "Hero Image",
@@ -28,13 +27,8 @@
                     "name": "Choose Pin Icon",
                     "description": "Pin icon",
                     "type": "enum",
-                    "values": [
-                        "&#9917",
-                        "&#128522",
-                        "&#8859"
-                      ],
+                    "values": ["&#9917", "&#128522", "&#8859"],
                     "required": true
-                  
                 },
                 {
                     "id": "imageEditor",

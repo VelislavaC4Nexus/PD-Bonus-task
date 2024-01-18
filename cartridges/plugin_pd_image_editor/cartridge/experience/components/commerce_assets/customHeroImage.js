@@ -15,8 +15,8 @@ module.exports.render = function (context) {
     const model = new HashMap();
     model.imgUrl = content.image ? content.image.file.absURL : null;
     model.pins = content.imageEditor ? content.imageEditor.pins : [];
-    model.pinStyle = content.pinStyle ? content.pinStyle : null
-    model.imageAlt = content.imageAlt
+    model.pinStyle = content.pinStyle ? content.pinStyle : null;
+    model.imageAlt = content.imageAlt;
 
     return new Template('experience/components/commerce_assets/customHeroImage').render(model).text;
 };

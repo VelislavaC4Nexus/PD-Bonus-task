@@ -7,5 +7,5 @@ module.exports.init = function (editor) {
 
     // Init editor configuration
     editor.configuration.options.put('init', optionsInit);
-    
+
 };
