@@ -48,13 +48,6 @@ var { elementGenerator } = require('../../../../helpers/helperDOM');
         emitCurrentValue();
     }
 
-    function emitCurrentValue() {
-        emit({
-            type: "sfcc:value",
-            payload: currentValue,
-        });
-    }
-
     function createBreakOutDomElements(currentValue) {
         const pinContainer = elementGenerator('div', '', document.body);
         pinContainer.className = 'pin-container';
