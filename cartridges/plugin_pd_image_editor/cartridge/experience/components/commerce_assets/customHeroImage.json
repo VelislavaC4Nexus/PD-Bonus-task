@@ -1,0 +1,57 @@
+{
+    "name": "Hero Image Pins",
+    "description": "This is a hero image component with option to add pins",
+    "group": "commerce_assets",
+    "attribute_definition_groups": [
+        {
+            "id": "imageSpecificaton",
+            "name": "Image Specification",
+            "description": "Specification of the image to be displayed in editor.",
+            "attribute_definitions": [
+                {
+                    "id": "image",
+                    "name": "Hero Image",
+                    "description": "Hero Image.",
+                    "type": "image",
+                    "required": true
+                },
+                {
+                    "id": "lazyLoadImage",
+                    "name": "Lazy Loading Image",
+                    "type": "boolean",
+                    "required": false
+                },
+                {
+                    "id": "imageAlt",
+                    "name": "Image Alt",
+                    "description": "Image Alt.",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "id": "pinStyle",
+                    "name": "Choose Pin Icon",
+                    "description": "Pin icon",
+                    "type": "enum",
+                    "values": ["&#9917", "&#128522", "&#8859"],
+                    "required": true
+                },
+                {
+                    "id": "imageEditor",
+                    "name": "Image Editor",
+                    "type": "custom",
+                    "required": false,
+                    "editor_definition": {
+                        "type": "com.sfcc.imageEditorTrigger",
+                        "configuration": {
+                            "options": {
+                                "config": []
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "region_definitions": []
+}

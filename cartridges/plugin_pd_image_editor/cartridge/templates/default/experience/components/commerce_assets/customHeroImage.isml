@@ -1,0 +1,14 @@
+<isscript>
+    var assets = require('*/cartridge/scripts/assets.js');
+    assets.addJs('/js/imageHelpersScripst.js');
+</isscript>
+
+<div>
+    <img class="img-pins" loading="${pdict.loading}" src="${pdict.imgUrl}" alt="${pdict.imageAlt}">
+    <isloop items="${pdict.pins}" var="pin" status="loopstatus">
+        <div class="pin position-absolute translate-middle pin-${pin.pinClass}"
+            style="left: ${pin.posX + 'px'}; top: ${pin.posY + 'px'}; cursor: pointer;">
+            <isprint value="${pdict.pinStyle}" encoding="off" />
+        </div>
+    </isloop>
+</div>
